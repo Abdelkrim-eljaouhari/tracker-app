@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Header from './layout/header';
+import Form from './components/form';
+import FilterBox from './components/filterBox';
+import WeightInfos from './components/weightInfos';
+import ChangeByDate from './components/changeByDate';
+import './css/index.css';
+import './css/reset.css';
+import './css/typography/fonts.css';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    isUnit: 'kg',
+  };
+  handleUnit = (e) => {
+    this.setState({ isUnit: e.target.value });
+  };
+  render() {
+    return (
+      <div className="App">
+        <Header unit={this.state.isUnit} />
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+              <Form handleUnit={this.handleUnit} unit={this.state.isUnit} />
+            </Route>
+            <Route path="/filterBox">
+              <FilterBox />
+            </Route>
+            <Route path="/weightInfos">
+              <WeightInfos />
+            </Route>
+            <Route path="/changeByDate">
+              <ChangeByDate />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+{
+  /* <Switch>
+<Route path="/filterBox">
+  <FilterBox />
+</Route>
+<Route path="/weightInfos">
+  <WeightInfos />
+</Route>
+<Route path="/changeByDate">
+  <changeByDate />
+</Route>
+</Switch> */
+}
+export default connect()(App);

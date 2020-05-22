@@ -1,0 +1,56 @@
+html {
+  font-size: 10px;
+}
+body {
+  color: white;
+  font-size: 1.4rem;
+  background-color: #545b62;
+}
+
+/* header component */
+header {
+  margin-bottom: 1.5rem;
+}
+header nav {
+  height: 7.5rem;
+}
+
+header nav .weight-infos-btn {
+  border: 1px solid white;
+  border-radius: 5rem;
+  padding: 0.5rem 0.6rem;
+  margin-right: 1rem;
+}
+
+header nav .fa-plus-circle {
+  font-size: 2.8rem;
+  position: relative;
+  top: 0.6rem;
+}
+
+/* form */
+form div input {
+  padding: 1rem;
+  background-color: #343a40;
+  border: none;
+  color: white;
+}
+form div input[type='submit'] {
+  width: 12rem;
+  background-color: #33b5e5;
+  border: 1px solid;
+}
+form div input:first-child {
+  width: 50%;
+  margin-bottom: 0.5rem;
+}
+
+/* filter-box */
+.filter-box .list-group-item {
+  background-color: #343a40;
+}
+/* Weight-infos */
+
+.weight-infos-box .list-group-item {
+  background-color: #343a40;
+}
