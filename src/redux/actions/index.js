@@ -8,3 +8,10 @@ export function ModifyTodayWeight(weight) {
     weight,
   };
 }
+
+export function addWeigthByDate(weight) {
+  return {
+    type: 'ADD_WEIGHT_BY_DATE',
+    weight,
+  };
+}

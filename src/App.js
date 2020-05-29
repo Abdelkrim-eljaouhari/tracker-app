@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './layout/header';
 import Form from './components/form';
 import FilterBox from './components/filterBox';
 import WeightInfos from './components/weightInfos';
 import ChangeByDate from './components/changeByDate';
+import WeightTable from './components/weightTable';
 import './css/index.css';
 import './css/reset.css';
 import './css/typography/fonts.css';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -20,10 +21,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header unit={this.state.isUnit} />
         <Router>
+          <Header unit={this.state.isUnit} />
           <Switch>
-            <Route path="/" exact>
+            <Route exact path="/">
               <Form handleUnit={this.handleUnit} unit={this.state.isUnit} />
             </Route>
             <Route path="/filterBox">
@@ -35,6 +36,9 @@ class App extends Component {
             <Route path="/changeByDate">
               <ChangeByDate />
             </Route>
+            <Route path="/weightTable">
+              <WeightTable />
+            </Route>
           </Switch>
         </Router>
       </div>
@@ -42,17 +46,4 @@ class App extends Component {
   }
 }
 
-{
-  /* <Switch>
-<Route path="/filterBox">
-  <FilterBox />
-</Route>
-<Route path="/weightInfos">
-  <WeightInfos />
-</Route>
-<Route path="/changeByDate">
-  <changeByDate />
-</Route>
-</Switch> */
-}
 export default connect()(App);

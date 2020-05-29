@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 import { addWeight, ModifyTodayWeight } from '../redux/actions';
 import { connect } from 'react-redux';
+
 class Form extends Component {
   state = {
     weight: '',
@@ -33,13 +34,13 @@ class Form extends Component {
   render() {
     return (
       <>
-        <h1 style={{ color: 'green', textAlign: 'center' }}>
+        <h1 style={{ color: 'white', textAlign: 'center' }}>
           {this.state.isModify
             ? "Modify today's weight"
             : "Add your today's weight"}
         </h1>
         <form onSubmit={this.addWeight}>
-          <div className="form-row pl-2 flex-column  align-items-center">
+          <div className="form-row pl-2 flex-row align-items-center">
             <input
               type="number"
               placeholder="Add your current weight"
@@ -57,7 +58,6 @@ class Form extends Component {
               <option value="kg">KG</option>
               <option value="lb">Lb</option>
             </select>
-
             <input
               type="submit"
               value={this.state.isModify ? 'Modify' : 'Add'}

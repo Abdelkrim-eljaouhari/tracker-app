@@ -3,3 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+ul {
+  list-style: none;
+}
+
+/* Override styles */
+.react-datepicker-wrapper {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.react-datepicker {
+  font-size: 10px;
+
+  background-color: #c9dbff;
+}

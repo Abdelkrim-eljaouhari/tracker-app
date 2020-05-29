@@ -27,7 +27,19 @@ header nav .fa-plus-circle {
   position: relative;
   top: 0.6rem;
 }
+.weight-infos-list {
+  position: absolute;
+  top: 75px;
+  width: 120px;
+  z-index: 53;
+  background-color: #545b62;
+}
 
+.weight-infos-list li {
+  padding: 2px;
+  border-bottom: 1px solid black;
+  background-color: #6090a2;
+}
 /* form */
 form div input {
   padding: 1rem;
@@ -39,9 +51,10 @@ form div input[type='submit'] {
   width: 12rem;
   background-color: #33b5e5;
   border: 1px solid;
+  margin: 10px auto;
 }
 form div input:first-child {
-  width: 50%;
+  width: 100%;
   margin-bottom: 0.5rem;
 }
 
@@ -53,4 +66,34 @@ form div input:first-child {
 
 .weight-infos-box .list-group-item {
   background-color: #343a40;
+}
+
+/* Modal */
+.modal-both-cases {
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.modal-red {
+  background-color: #b48085;
+  border: 2px solid white;
+}
+.modal-green {
+  background-color: #779277;
+}
+
+/* transition */
+
+.table-info-enter {
+  opacity: 0.01;
+}
+
+.table-info-enter.table-info-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.table-info-exit {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }
