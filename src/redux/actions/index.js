@@ -15,3 +15,10 @@ export function addWeigthByDate(weight) {
     weight,
   };
 }
+
+export function filterByDate(weight) {
+  return {
+    type: 'FIlter_BY_DATE',
+    weight,
+  };
+}

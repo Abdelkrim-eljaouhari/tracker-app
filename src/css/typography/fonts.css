@@ -2,3 +2,12 @@
 body {
   font-family: 'Balsamiq Sans', cursive;
 }
+
+@font-face {
+  font-family: numberFont;
+  src: url(chargen.ttf);
+}
+
+.number-font {
+  font-family: numberFont;
+}

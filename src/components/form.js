@@ -15,7 +15,7 @@ class Form extends Component {
   handlechange = (e) => {
     this.setState({
       weight: e.target.value,
-      date: format(new Date(), 'MM/dd/yyyy'),
+      date: format(new Date(), 'dd/MM/yyyyy'),
       id: uuidv4(),
     });
   };
@@ -23,7 +23,7 @@ class Form extends Component {
     e.preventDefault();
     this.setState({ isModify: true });
     if (this.props.state.length !== 0) {
-      return this.props.state[0].date === format(new Date(), 'MM/dd/yyyy')
+      return this.props.state[0].date === format(new Date(), 'dd/MM/yyyyy')
         ? this.props.changeCurrentWeight(ModifyTodayWeight(this.state))
         : this.props.add(addWeight(this.state));
     } else {
@@ -49,6 +49,7 @@ class Form extends Component {
               onChange={this.handlechange}
               max="200"
               min="10"
+              className="number-font"
             />
             <select
               className="form-control form-control-lg"

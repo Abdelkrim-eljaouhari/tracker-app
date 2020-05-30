@@ -14,6 +14,12 @@ header {
 header nav {
   height: 7.5rem;
 }
+header .weight-not-provided {
+  background-color: #7287d8;
+  padding: 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+}
 
 header nav .weight-infos-btn {
   border: 1px solid white;
@@ -82,7 +88,7 @@ form div input:first-child {
   background-color: #779277;
 }
 
-/* transition */
+/* transition for table*/
 
 .table-info-enter {
   opacity: 0.01;
@@ -96,4 +102,27 @@ form div input:first-child {
 .table-info-exit {
   opacity: 0.01;
   transition: opacity 500ms ease-in;
+}
+
+/* transition for weight table*/
+.weight-table-appear {
+  transform: scale(0.5);
+}
+
+.weight-table-appear-done {
+  transform: scale(1);
+  transition: transform 100ms ease-in;
+}
+
+/* Weight table */
+.weight-filter-limitation {
+  padding-left: 2px;
+  background-color: #7287d8;
+}
+.show-date-box {
+  width: 146px;
+  background-color: #343a40;
+  height: 21px;
+  text-align: center;
+  border-radius: 5px;
 }

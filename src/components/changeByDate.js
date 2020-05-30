@@ -23,7 +23,7 @@ class ChangeByDate extends Component {
   };
 
   handleSelect = (e) => {
-    this.setState({ date: format(e, 'MM/dd/yyyy') });
+    this.setState({ date: format(e, 'dd/MM/yyyyy') });
   };
   addWeight = (e) => {
     const { weight, date, unit, message } = this.state;
@@ -101,7 +101,7 @@ class ChangeByDate extends Component {
             </select>
             <DatePicker
               onSelect={this.handleSelect}
-              dateFormat="dd/MM/YYYY"
+              dateFormat="dd/MM/yyyyy"
               maxDate={addDays(new Date(), 0)}
               placeholderText="Select a date "
             />
