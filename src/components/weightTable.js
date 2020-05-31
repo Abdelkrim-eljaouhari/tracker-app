@@ -13,7 +13,7 @@ class WeightTable extends Component {
     showModal: false,
   };
   setlimitDate = (e, name) => {
-    this.setState({ [name]: format(e, 'dd/MM/yyyyy') });
+    this.setState({ [name]: e });
   };
   deleteWeight = () => {
     console.log('clicked');
@@ -24,17 +24,19 @@ class WeightTable extends Component {
       this.props.dispatch(filterByDate({ startDate, endDate }));
       return this.setState({ showModal: true, fieldMissed: false });
     }
-    // return this.setState({ showModal: true ,fieldMissed: false  });
+    return this.setState({ showModal: true, fieldMissed: true });
   };
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.showModal) {
+  componentDidUpdate() {
+    if (this.state.showModal) {
       setTimeout(() => {
         this.setState({ showModal: false, fieldMissed: false });
       }, 3000);
     }
   }
   render() {
-    const { showModal, fieldMissed } = this.state;
+    const { showModal, fieldMissed, startDate, endDate } = this.state;
+    let start = startDate && format(startDate, 'dd/MM/yyyyy');
+    let end = endDate && format(endDate, 'dd/MM/yyyyy');
     return (
       <CSSTransition
         in={true}
@@ -65,9 +67,7 @@ class WeightTable extends Component {
                 onChange={(e) => this.setlimitDate(e, 'startDate')}
               />
             </li>
-            <li className="show-date-box start-date-show">
-              {this.state.startDate}
-            </li>
+            <li className="show-date-box start-date-show">{start}</li>
 
             <li className="weight-filter-limitation">End :</li>
             <li>
@@ -79,9 +79,7 @@ class WeightTable extends Component {
                 onChange={(e) => this.setlimitDate(e, 'endDate')}
               />
             </li>
-            <li className="show-date-box end-date-show">
-              {this.state.endDate}
-            </li>
+            <li className="show-date-box end-date-show">{end}</li>
             <li>
               <button onClick={this.onFilterByDate}>Filter</button>
             </li>

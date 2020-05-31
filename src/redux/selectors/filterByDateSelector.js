@@ -1,8 +1,6 @@
-import { getTime } from 'date-fns';
+import { getTime, isValid } from 'date-fns';
 function filterByDateSelector(state, { startDate, endDate }) {
-  console.log(getTime(new Date()));
-  console.log(startDate);
-
-  return state;
+  console.log(getTime(startDate));
+  return [];
 }
 export default filterByDateSelector;
