@@ -1,15 +1,30 @@
 import addByDateSelector from '../selectors/addByDateSelector';
-import filterByDateSelector from '../selectors/filterByDateSelector';
-function reduceFunc(state = [], action) {
+import dummyData from '../../data/dummyData';
+function reduceFunc(state = { weights: dummyData }, action) {
   switch (action.type) {
     case 'ADD_WERIGHT':
-      return state.concat(action.weight);
+      return { weights: [...state.weights].concat(action.componentState) };
     case 'MODIFY_TODAY_WEIGHT':
-      return addByDateSelector([...state], action.weight);
+      return addByDateSelector(
+        { weights: [...state.weights] },
+        action.componentState
+      );
     case 'ADD_WEIGHT_BY_DATE':
-      return addByDateSelector([...state], action.weight);
-    case 'FIlter_BY_DATE':
-      return filterByDateSelector([...state], action.weight);
+      return addByDateSelector(
+        { weights: [...state.weights] },
+        action.componentState
+      );
+    case 'FIlTER_BY_DATE':
+      return {
+        weights: [...state.weights],
+        startDate: action.componentState.startDate,
+        endDate: action.componentState.endDate,
+        showAll: action.componentState.showAll,
+      };
+    case 'SHOW_ALL':
+      return {
+        weights: [...state.weights],
+      };
     default:
       return state;
   }

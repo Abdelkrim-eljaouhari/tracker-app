@@ -8,10 +8,10 @@ import { addWeigthByDate } from '../redux/actions';
 import { v4 as uuidv4 } from 'uuid';
 class ChangeByDate extends Component {
   state = {
-    date: '',
     weight: '',
+    date: '',
     id: '',
-    unit: '',
+    unit: 'kg',
     fieldMissed: false,
     showModal: false,
   };
@@ -26,10 +26,12 @@ class ChangeByDate extends Component {
     this.setState({ date: format(e, 'dd/MM/yyyyy') });
   };
   addWeight = (e) => {
-    const { weight, date, unit, message } = this.state;
+    const { weight, date, unit } = this.state;
+
     e.preventDefault();
     let convertTokg =
       unit === 'kg' ? weight : (weight / 2.20462).toPrecision(4);
+    // this.setState with callback function
     this.setState(
       {
         date,
@@ -44,7 +46,7 @@ class ChangeByDate extends Component {
             date: '',
             weight: '',
             id: '',
-            unit: '',
+            unit,
             fieldMissed: false,
           });
         } else {
@@ -85,7 +87,6 @@ class ChangeByDate extends Component {
             <input
               type="number"
               placeholder="Add your current weight"
-              name="weight"
               value={this.state.weight}
               onChange={this.handlechange}
               max={this.state.unit === 'lb' ? 500 : 200}

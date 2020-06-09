@@ -70,9 +70,9 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ weights }) => {
   return {
-    state,
+    state: weights,
   };
 };
 

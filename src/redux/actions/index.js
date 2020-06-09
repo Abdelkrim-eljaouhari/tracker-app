@@ -1,24 +1,31 @@
-export function addWeight(weight) {
-  return { type: 'ADD_WERIGHT', weight };
+export function addWeight(componentState) {
+  return { type: 'ADD_WERIGHT', componentState };
 }
 
-export function ModifyTodayWeight(weight) {
+export function ModifyTodayWeight(componentState) {
   return {
     type: 'MODIFY_TODAY_WEIGHT',
-    weight,
+    componentState,
   };
 }
 
-export function addWeigthByDate(weight) {
+export function addWeigthByDate(componentState) {
   return {
     type: 'ADD_WEIGHT_BY_DATE',
-    weight,
+    componentState,
   };
 }
 
-export function filterByDate(weight) {
+export function filterByDate(componentState) {
   return {
-    type: 'FIlter_BY_DATE',
-    weight,
+    type: 'FIlTER_BY_DATE',
+    componentState,
+  };
+}
+
+export function showAll(componentState) {
+  return {
+    type: 'SHOW_ALL',
+    componentState,
   };
 }

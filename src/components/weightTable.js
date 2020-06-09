@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import DatePicker from 'react-datepicker';
 import { format, addDays } from 'date-fns';
-import { filterByDate } from '../redux/actions';
+import { filterByDate, showAll } from '../redux/actions';
+import filterByDateSelector from '../redux/selectors/filterByDateSelector';
+
 import Modal from './modal';
+require('dotenv').config();
 class WeightTable extends Component {
   state = {
     startDate: '',
@@ -13,11 +16,9 @@ class WeightTable extends Component {
     showModal: false,
   };
   setlimitDate = (e, name) => {
-    this.setState({ [name]: e });
+    this.setState({ [name]: format(e, 'dd/MM/yyyyy') });
   };
-  deleteWeight = () => {
-    console.log('clicked');
-  };
+  deleteWeight = () => {};
   onFilterByDate = () => {
     const { startDate, endDate } = this.state;
     if (startDate && endDate) {
@@ -26,17 +27,18 @@ class WeightTable extends Component {
     }
     return this.setState({ showModal: true, fieldMissed: true });
   };
+  showAll = () => {
+    this.props.dispatch(showAll());
+  };
   componentDidUpdate() {
     if (this.state.showModal) {
       setTimeout(() => {
-        this.setState({ showModal: false, fieldMissed: false });
+        this.setState({ showModal: false, fieldMissed: false, showAll: false });
       }, 3000);
     }
   }
   render() {
     const { showModal, fieldMissed, startDate, endDate } = this.state;
-    let start = startDate && format(startDate, 'dd/MM/yyyyy');
-    let end = endDate && format(endDate, 'dd/MM/yyyyy');
     return (
       <CSSTransition
         in={true}
@@ -55,7 +57,15 @@ class WeightTable extends Component {
               color={fieldMissed ? 'red' : 'green'}
             />
           )}
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.showAll}
+          >
+            Show all
+          </button>
           <h2>Filter weights by date</h2>
+
           <ul className="weight-filter d-flex justify-content-between align-items-center">
             <li className="weight-filter-limitation">Start :</li>
             <li>
@@ -67,7 +77,7 @@ class WeightTable extends Component {
                 onChange={(e) => this.setlimitDate(e, 'startDate')}
               />
             </li>
-            <li className="show-date-box start-date-show">{start}</li>
+            <li className="show-date-box start-date-show">{startDate}</li>
 
             <li className="weight-filter-limitation">End :</li>
             <li>
@@ -79,9 +89,11 @@ class WeightTable extends Component {
                 onChange={(e) => this.setlimitDate(e, 'endDate')}
               />
             </li>
-            <li className="show-date-box end-date-show">{end}</li>
+            <li className="show-date-box end-date-show">{endDate}</li>
             <li>
-              <button onClick={this.onFilterByDate}>Filter</button>
+              <button className="filter-btn" onClick={this.onFilterByDate}>
+                Filter
+              </button>
             </li>
           </ul>
           <table className="table table-hover">
@@ -100,13 +112,14 @@ class WeightTable extends Component {
                   return (
                     <tr key={weightItem.id}>
                       <td>{weightItem.weight}</td>
-                      <td>Hi</td>
+                      <td>{(weightItem.weight * 2.20462).toPrecision(3)}</td>
                       <td>{weightItem.date}</td>
                       <td>
                         <button
                           id={weightItem.id}
                           type="button"
                           className="btn btn-outline-danger"
+                          onClick={this.deleteWeight}
                         >
                           Delete
                         </button>
@@ -131,9 +144,12 @@ class WeightTable extends Component {
   }
 }
 
-const mapStateToProps = function (state) {
+const mapStateToProps = function ({ weights, startDate, endDate }) {
   return {
-    state,
+    state:
+      startDate && endDate
+        ? filterByDateSelector(weights, startDate, endDate)
+        : weights,
   };
 };
 export default connect(mapStateToProps)(WeightTable);

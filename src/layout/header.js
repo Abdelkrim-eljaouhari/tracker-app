@@ -75,9 +75,9 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ weights }) => {
   return {
-    state,
+    state: weights,
   };
 };
 export default connect(mapStateToProps)(Header);
